@@ -33,9 +33,19 @@ public class MyBroadcast extends BroadcastReceiver {
         }
         if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
             Log.e("timeBroad", "屏幕解锁了");
+            isServiceRunning = ServiceMangerUtils.isServiceWorked(MyAppliction.getmContext(), "myservice1");
+            if (!isServiceRunning) {
+                Intent i = new Intent(context, MyServiceOne.class);
+                context.startService(i);
+            }
         }
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
             Log.e("timeBroad", "屏幕关闭了");
+            isServiceRunning = ServiceMangerUtils.isServiceWorked(MyAppliction.getmContext(), "myservice1");
+            if (!isServiceRunning) {
+                Intent i = new Intent(context, MyServiceOne.class);
+                context.startService(i);
+            }
         }
     }
 
